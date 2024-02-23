@@ -1,0 +1,25 @@
+import { StackWithSize } from "./classes/stackWithSize.js";
+
+const stackWithSize = new StackWithSize(5);
+console.log("stackWithSize.items", stackWithSize.items);
+console.log("stackWithSize.peek()", stackWithSize.peek());
+stackWithSize.add(10);
+stackWithSize.add(20);
+stackWithSize.add(30);
+console.log("stackWithSize.items", stackWithSize.items);
+console.log("stackWithSize.peek()", stackWithSize.peek());
+stackWithSize.add(40);
+stackWithSize.add(50);
+console.log("stackWithSize.items", stackWithSize.items);
+console.log("stackWithSize.peek()", stackWithSize.peek());
+stackWithSize.add(60);
+console.log("stackWithSize.items", stackWithSize.items);
+console.log("stackWithSize.peek()", stackWithSize.peek());
+console.log("stackWithSize.pop()", stackWithSize.pop());
+console.log("stackWithSize.pop()", stackWithSize.pop());
+console.log("stackWithSize.pop()", stackWithSize.pop());
+console.log("stackWithSize.items", stackWithSize.items);
+console.log("stackWithSize.peek()", stackWithSize.peek());
+console.log("stackWithSize.pop()", stackWithSize.pop());
+console.log("stackWithSize.pop()", stackWithSize.pop());
+console.log("stackWithSize.pop()", stackWithSize.pop());

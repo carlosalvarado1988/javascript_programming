@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "type": "module",
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.cjs"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
