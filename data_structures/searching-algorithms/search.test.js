@@ -15,3 +15,19 @@ console.log("search.binarySearchRec(arr, 5):", search.binarySearchRec(arr, 5));
 console.log("search.binarySearchRec(arr, 1):", search.binarySearchRec(arr, 1));
 console.log("search.binarySearchRec(arr, 7):", search.binarySearchRec(arr, 7));
 console.log("search.binarySearchRec(arr, 8):", search.binarySearchRec(arr, 8));
+console.log(
+  "search.binarySearchIter(arr, 5):",
+  search.binarySearchIter(arr, 5)
+);
+console.log(
+  "search.binarySearchIter(arr, 1):",
+  search.binarySearchIter(arr, 1)
+);
+console.log(
+  "search.binarySearchIter(arr, 7):",
+  search.binarySearchIter(arr, 7)
+);
+console.log(
+  "search.binarySearchIter(arr, 8):",
+  search.binarySearchIter(arr, 8)
+);

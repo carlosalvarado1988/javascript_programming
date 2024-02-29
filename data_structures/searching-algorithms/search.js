@@ -54,4 +54,21 @@ export class Search {
       rightIdx
     );
   }
+
+  binarySearchIter(orderedArr, targetNumber) {
+    let leftIdx = 0;
+    let rightIdx = orderedArr.length;
+
+    while (leftIdx <= rightIdx) {
+      let middle = Math.floor((leftIdx + rightIdx) / 2); // on JS - ensure we use Math.floor to get down those decimals.
+      if (orderedArr[middle] == targetNumber) return middle;
+
+      if (targetNumber < orderedArr[middle]) {
+        rightIdx = middle - 1;
+      } else {
+        leftIdx = middle + 1;
+      }
+    }
+    return -1;
+  }
 }
