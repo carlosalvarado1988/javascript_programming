@@ -57,4 +57,35 @@ export class WeightedGraph {
       }
     }
   }
+
+  hasCycle() {
+    let visited = new Set();
+    for (let node of this.#nodes.values()) {
+      // if we havent visited this node yet && // check for cycle: starts with the root, so parent here is null
+      if (!visited.has(node) && this.#hasCycleRec(node, null, visited)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  #hasCycleRec(currNode, parent, visitedList) {
+    visitedList.add(currNode);
+
+    for (let edge of this.#adjancetEdgesList.get(currNode)) {
+      if (edge.to == parent) continue;
+
+      // if the next edge was already visited, there is a cycle.
+      // the OR section is running the recursive method on the child
+      // trying to find if the next edge is already visited too. until any case is true
+      if (
+        visitedList.has(edge.to) ||
+        this.#hasCycleRec(edge.to, currNode, visitedList)
+      ) {
+        return true;
+      }
+    }
+    // if no visitedList.has(edge.to) is found, then there is no cycle
+    return false;
+  }
 }
