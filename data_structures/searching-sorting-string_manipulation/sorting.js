@@ -5,6 +5,7 @@ export class Sort {
     arr[rightIdx] = temp;
   }
 
+  // COMPARISON ALGORITHMS.
   /*
   Bubble Sort
     You scan from left to right, and swap the elements one by one.
@@ -292,4 +293,93 @@ export class Sort {
     }
     return boundary;
   }
+
+  // NON-COMPARISON ALGORITHMS.
+
+  /*
+  Counting Sort 
+    Non-comparison sort algorithm, use basic math.
+    having an array [0,K] where K is the max item in the array.
+    - we need to figure out how many times each item appears.
+    - we use another array to count.
+        - each iteration updates the count in the second array.
+        - the index of the array represent the item value to count.
+        - that way we have the count ocurrances for each item.
+    
+    - then we iterate over the second array to fill out the first array
+    in an ordered manner.
+    - for every occurance > 0, we take the index as the value and we introduce it back in the array
+    - looping from lower to greater, we get the sorted array.
+
+    Time complexity: 
+                          BEST       WORST
+        
+        Populate counts    O(n)        O(n)    * the iteration over all elements of the array.
+        Iterate counts     O(k)                * the iteration over all elements of the counting array.
+        -----------------------------------
+         Total              O(n)      O(n2)  
+                    * Linear time much faster than previous, at a cost.
+    Space complexity: 
+        Space          O(K)         O(n)   * K is the max item value, meaning the last index of the array in the 2nd array.
+        
+
+    NOTE: This algorith is a Time-memory Trade-off, over the others.
+        - Use when allocating extra space is not an issue
+        - when values are positive integers
+        - when most values in the range are present, so not many indexes with 0 counts in the counting array.
+  */
+
+  countingSort(arr) {
+    const max = Math.max(...arr); // get the max value in the array to set the max length
+
+    const counts = new Array(max + 1).fill(0);
+    for (let item of arr) {
+      //   counts[item] = (counts[item] || 0) + 1;
+      counts[item]++; // by adding + 1).fill(0) i can use the counts[item]++, because they already have numeric values to increment
+    }
+
+    // to keep track of the index to refill.
+    let k = 0;
+    // loop to refill with counting array.
+    for (let i = 0; i < counts.length; i++) {
+      // loop over the value found, to make a repeated refill in the original array
+      for (let j = 0; j < counts[i]; j++) {
+        arr[k++] = i;
+      }
+    }
+    return arr;
+  }
+
+  /*
+  Bucket Sort 
+    Non-comparison sort algorithm, use basic math.
+    having an array [0,K] where K is the max item in the array.
+    - we need to figure out how many times each item appears.
+    - we use another array to count.
+        - each iteration updates the count in the second array.
+        - the index of the array represent the item value to count.
+        - that way we have the count ocurrances for each item.
+    
+    - then we iterate over the second array to fill out the first array
+    in an ordered manner.
+    - for every occurance > 0, we take the index as the value and we introduce it back in the array
+    - looping from lower to greater, we get the sorted array.
+
+    Time complexity: 
+                          BEST       WORST
+        
+        Populate counts    O(n)        O(n)    * the iteration over all elements of the array.
+        Iterate counts     O(k)                * the iteration over all elements of the counting array.
+        -----------------------------------
+         Total              O(n)      O(n2)  
+                    * Linear time much faster than previous, at a cost.
+    Space complexity: 
+        Space          O(K)         O(n)   * K is the max item value, meaning the last index of the array in the 2nd array.
+        
+
+    NOTE: This algorith is a Time-memory Trade-off, over the others.
+        - Use when allocating extra space is not an issue
+        - when values are positive integers
+        - when most values in the range are present, so not many indexes with 0 counts in the counting array.
+  */
 }

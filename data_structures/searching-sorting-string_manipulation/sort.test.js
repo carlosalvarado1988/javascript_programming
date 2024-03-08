@@ -24,3 +24,8 @@ console.log(
   sort.quickSort([7, 3, 1, 5, 2])
 );
 console.log("\n");
+console.log(
+  "sort.countingSort([7, 3, 1, 5, 2]):",
+  sort.countingSort([7, 3, 1, 5, 2])
+);
+console.log("\n");
