@@ -1,3 +1,5 @@
+import { LinkedList } from "../linear/LinkedList/linkedListJS.js";
+
 export class Sort {
   #swap(arr, leftIdx, rightIdx) {
     const temp = arr[leftIdx];
@@ -312,15 +314,15 @@ export class Sort {
     - looping from lower to greater, we get the sorted array.
 
     Time complexity: 
-                          BEST       WORST
+                          BEST       
         
-        Populate counts    O(n)        O(n)    * the iteration over all elements of the array.
-        Iterate counts     O(k)                * the iteration over all elements of the counting array.
+        Populate counts    O(n)   * the iteration over all elements of the array.
+        Iterate counts     O(k)   * the iteration over all elements of the counting array.
         -----------------------------------
-         Total              O(n)      O(n2)  
+         Total             O(n)   
                     * Linear time much faster than previous, at a cost.
     Space complexity: 
-        Space          O(K)         O(n)   * K is the max item value, meaning the last index of the array in the 2nd array.
+        Space              O(K)   * K is the max item value, meaning the last index of the array in the 2nd array.
         
 
     NOTE: This algorith is a Time-memory Trade-off, over the others.
@@ -353,33 +355,87 @@ export class Sort {
   /*
   Bucket Sort 
     Non-comparison sort algorithm, use basic math.
-    having an array [0,K] where K is the max item in the array.
-    - we need to figure out how many times each item appears.
-    - we use another array to count.
-        - each iteration updates the count in the second array.
-        - the index of the array represent the item value to count.
-        - that way we have the count ocurrances for each item.
     
-    - then we iterate over the second array to fill out the first array
-    in an ordered manner.
-    - for every occurance > 0, we take the index as the value and we introduce it back in the array
-    - looping from lower to greater, we get the sorted array.
+    The idea is to distribute items in a number buckets
+    sort the buckets with another algorithm.
+    which takes less time than sorting a big array.
+
+    plus, we could sort them in parallel - out of this implementation.
+      
+    - how many buckets? it affects performance, the more we have, more memory, but less time to sort with less items. No magic number here.
+    - which bucket we store an item? formula: bucket = item / numberOfBuckets
+    - sort buckets independenly, any algorithm, it doesnt matter.
+    - we iterate the buckets to refill the original array.
+
 
     Time complexity: 
-                          BEST       WORST
+                            BEST     WORST  
         
-        Populate counts    O(n)        O(n)    * the iteration over all elements of the array.
-        Iterate counts     O(k)                * the iteration over all elements of the counting array.
-        -----------------------------------
-         Total              O(n)      O(n2)  
-                    * Linear time much faster than previous, at a cost.
+        Distribution         O(n)     O(n)         * the iteration over all items of the array.
+        Iterating buckets    O(k)     O(k)          * the iteration over all buckets, sort each list and put items back in input array.
+        Sorting              O(1)     O(n2)        * best sceario only 1 element in bucket, to the cost of more space. worst is dependent of sorting algorithm selected.
+        -------------------------------------------------
+         Total             O(n + k)    O(n2)
+                    
     Space complexity: 
-        Space          O(K)         O(n)   * K is the max item value, meaning the last index of the array in the 2nd array.
-        
+         Space           O(n + k)    * the additional array will have k = # of buckets, each bucket is a linked list with n # of items.
 
-    NOTE: This algorith is a Time-memory Trade-off, over the others.
-        - Use when allocating extra space is not an issue
-        - when values are positive integers
-        - when most values in the range are present, so not many indexes with 0 counts in the counting array.
+    NOTE: This algorith is a Time-memory Trade-off.
+        - More buckets = less time, faster.
+        - Less buckets = more time, slower.
   */
+
+  bucketSort(arr, numberOfBuckets) {
+    // create a linkedList of integers
+    // type: List<List<Integer>>>
+    // const buckets = new LinkedList();
+    // an equivalent array with linkedList in the values
+
+    // needs to do a loop to create the linkedList independently
+
+    // const buckets = new Array(numberOfBuckets).fill(new LinkedList()); // this solution is a reference to the same object, so every insert was added to the same instance
+    const buckets = new Array(numberOfBuckets);
+    for (let i = 0; i < numberOfBuckets; i++) {
+      buckets[i] = new LinkedList();
+    }
+
+    // iterate and distribute
+    for (let item of arr) {
+      // accessing the LinkedList object by its index, then adding the item in the linkedList
+      const idx = Math.floor(item / numberOfBuckets);
+      buckets[idx].insert(item);
+    }
+
+    // refactor option
+    // const buckets = this.#createBuckets(arr, numberOfBuckets);
+
+    let i = 0; // a variable to keep track of each refill insert to the input array
+    // iterate to sort each bucket
+    for (let bucket of buckets) {
+      // use any sorting method.
+      //   Collections.sort(bucket); // a java util method to sort the param object, it accepts a LinkedList
+      // had to get a linkedList from interent to get a version with sort.
+      bucket.mergeSort();
+
+      for (let item of bucket.iterator()) {
+        // with the bucket sorted, refill the input arr
+        arr[i++] = item.value;
+      }
+    }
+    return arr;
+  }
+  //   #createBuckets(arr, numberOfBuckets) {
+  //     // create a linkedList of integers
+  //     // type: List<List<Integer>>>
+  //     // const buckets = new LinkedList();
+  //     // an equivalent array with linkedList in the values
+  //     const buckets = new Array(numberOfBuckets).fill(new LinkedList());
+
+  //     // iterate and distribute
+  //     for (let item of arr) {
+  //       // accessing the LinkedList object by its index, then adding the item in the linkedList
+  //       buckets[item / numberOfBuckets].addLast(item);
+  //     }
+  //     return buckets;
+  //   }
 }

@@ -16,7 +16,8 @@ LinkedList<Entry>[]
 // https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 // equivalent to linkedList with document elements
 
-import { LinkedList } from "../../linear/LinkedList/linkedList.js";
+// import { LinkedList } from "../../linear/LinkedList/linkedList.js";
+import { LinkedList } from "../../LinkedList/linkedList.js";
 class Entry {
   constructor(key, value) {
     this.key = key;

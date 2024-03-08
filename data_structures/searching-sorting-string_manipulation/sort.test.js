@@ -29,3 +29,8 @@ console.log(
   sort.countingSort([7, 3, 1, 5, 2])
 );
 console.log("\n");
+console.log(
+  "sort.bucketSort([7, 3, 1, 5, 2], 3):",
+  sort.bucketSort([7, 3, 1, 5, 2], 3)
+);
+console.log("\n");

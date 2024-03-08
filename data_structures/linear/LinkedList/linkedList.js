@@ -12,6 +12,14 @@ export class LinkedList {
     this.first = null;
     this.last = null;
     this.length = 0;
+
+    // needed for sort function
+    this.list = [];
+    this.sortingFunction =
+      sortingFunction ??
+      ((a, b) => {
+        return a < b;
+      });
   }
 
   printAll() {
@@ -308,6 +316,34 @@ export class LinkedList {
   }
 
   hasLoop() {}
+
+  // added this additional method to help the bucketSort algorithm exercise which needs to sort a linkedList in its implementation
+  // solution taken from here: https://stackoverflow.com/questions/69691689/sorting-a-linked-array
+  // and then adapted
+  sort(sortingFunction) {
+    if (!sortingFunction) {
+      return false;
+    }
+    this.head = null;
+    this.tail = null;
+    const arr = this.list.map((x) => x);
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr.length; j++) {
+        if (!arr[j + 1]?.value) {
+          continue;
+        }
+        if (sortingFunction(arr[j].value, arr[j + 1].value)) {
+          let tmp_next = arr[j].next;
+          let tmp_prev = arr[j].previous;
+          arr[j].next = arr[j + 1].next;
+          arr[j].previous = arr[j + 1].previous;
+          arr[j + 1].next = tmp_next;
+          arr[j + 1].previous = tmp_prev;
+        }
+      }
+    }
+    this.list = arr;
+  }
 }
 
 // TESTING
