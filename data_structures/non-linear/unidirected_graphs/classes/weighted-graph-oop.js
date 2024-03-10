@@ -78,6 +78,10 @@ export class WeightedGraphOOP {
 
   /*
     DIJKSTRA'S ALGORITH
+    USE FOR GOOGLE MAPS
+    SHORTEST PATH
+    MAPS
+    
     A GREEDY ALGORITHM, TRIES TO FIND THE OPTIONAL SOLUTION TO A PROBLEM BY MAKING OPTIONAL CHOICES IN EACH STEP.
 
     using deephtraversal and a priority queue to implement
