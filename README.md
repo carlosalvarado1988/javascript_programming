@@ -254,3 +254,8 @@ Tries are trees (not binary) and their use case is autocompletion
 
 Since the alphabet has 27 letters, each node can have up to 26 children,
 this to map all possible prefix for a autocomplete functionality
+
+# Javascript notes
+
+- Think of time and space performance for every operation, also think of implications for using in the browser.
+- not all code is within Node or backend engine boundaries, the browser computation may affect the performance as well.
