@@ -19,7 +19,7 @@ describe("StringUtils", () => {
     });
   });
   describe("reverseOrderOfWords", () => {
-    it("should reverse a string", () => {
+    it("should reverse the orders of the words", () => {
       expect(StringUtils.reverseOrderOfWords("hello how are")).toEqual(
         "are how hello"
       );
@@ -29,7 +29,7 @@ describe("StringUtils", () => {
     });
   });
   describe("checkRotationOfAnotherString", () => {
-    it("should reverse a string", () => {
+    it("should check if a second string is a rotation of the first", () => {
       expect(StringUtils.checkRotationOfAnotherString("ABCD", "DABC")).toEqual(
         true
       ); // (rotate one char to the right)
@@ -39,6 +39,67 @@ describe("StringUtils", () => {
       expect(StringUtils.checkRotationOfAnotherString("ABCD", "ADBC")).toEqual(
         false
       );
+    });
+  });
+  describe("removeDuplicate", () => {
+    it("should remove duplicates in a string", () => {
+      expect(StringUtils.removeDuplicate("Hellooo!!")).toEqual("Helo!");
+    });
+  });
+  describe("findTheMostRepeated", () => {
+    it("should remove duplicates in a string", () => {
+      expect(StringUtils.findTheMostRepeated("Hellooo!!")).toEqual("o");
+    });
+  });
+  describe("capitalizeFirstLetterOfWord", () => {
+    it("should capaitalize a letter of a word", () => {
+      expect(
+        StringUtils.capitalizeFirstLetterOfWord("trees are beautiful")
+      ).toEqual("Trees Are Beautiful");
+      expect(
+        StringUtils.capitalizeFirstLetterOfWord(
+          "  trees    are        beautiful  "
+        )
+      ).toEqual("Trees Are Beautiful");
+    });
+  });
+  describe("isAnagram", () => {
+    it("should verify a string has the same characters of the other string", () => {
+      expect(StringUtils.isAnagram("abcd", "adbc")).toEqual(true);
+      expect(StringUtils.isAnagram("abcd", "cadb")).toEqual(true);
+      expect(StringUtils.isAnagram("abcd", "abcd")).toEqual(true);
+      expect(StringUtils.isAnagram("abcd", "abce")).toEqual(false);
+      expect(StringUtils.isAnagram("abcd", "aaab")).toEqual(false);
+      expect(StringUtils.isAnagram("aaab", "abce")).toEqual(false);
+    });
+  });
+  describe("areAnagramWithHistogramms", () => {
+    it("should verify a string has the same characters of the other string", () => {
+      expect(StringUtils.areAnagramWithHistogramms("abcd", "adbc")).toEqual(
+        true
+      );
+      expect(StringUtils.areAnagramWithHistogramms("abcd", "cadb")).toEqual(
+        true
+      );
+      expect(StringUtils.areAnagramWithHistogramms("abcd", "abcd")).toEqual(
+        true
+      );
+      expect(StringUtils.areAnagramWithHistogramms("abcd", "abce")).toEqual(
+        false
+      );
+      expect(StringUtils.areAnagramWithHistogramms("abcd", "aaab")).toEqual(
+        false
+      );
+      expect(StringUtils.areAnagramWithHistogramms("aaab", "abce")).toEqual(
+        false
+      );
+    });
+  });
+  describe("isPalindrome", () => {
+    it("should read the same from left to right and viceversa", () => {
+      expect(StringUtils.isPalindrome("abba")).toEqual(true);
+      expect(StringUtils.isPalindrome("abcba")).toEqual(true);
+      expect(StringUtils.isPalindrome("abca")).toEqual(false);
     });
   });
 });
