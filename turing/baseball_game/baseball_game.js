@@ -65,10 +65,6 @@ export class Baseball {
 
   #getScoreFromTrackingScore() {
     let sum = 0;
-    console.log(
-      "🚀 ~ Baseball ~ #getScoreFromTrackingScore ~ this.#trackingScore:",
-      this.#trackingScore
-    );
     for (let score of this.#trackingScore) {
       sum += score;
     }
