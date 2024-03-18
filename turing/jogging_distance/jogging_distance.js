@@ -98,10 +98,12 @@ export class JoggingDistance {
     // SECTION FOR let counterClockWise = 0;
     let counterClockWise = 0;
     // looping from destination to end
+    // [1, 2, 3, 4], 3, 0
     for (let i = destinationPoint; i < length; i++) {
-      counterClockWise += k[i];
+      counterClockWise += k[i]; //4
     }
     // looping from 0 to starting point
+    // dont enter
     if (startPoint >= 0) {
       for (let i = 0; i < startPoint; i++) {
         counterClockWise += k[i];
@@ -157,3 +159,72 @@ export class JoggingDistance {
 
 //   return clockWise < counterClockWise ? clockWise : counterClockWise;
 // };
+
+// ANOTHER TRY WITH A DIFF DATA STRUCTURE THAN ARRAY APPROACH
+// k array of distances between points.
+// x = starting resting point
+// y = destination resting point
+
+//  0 -(1)-> 1
+//  |        |
+// (4)      (2)
+//  |        |
+//  3 <-(3)-- 2
+
+// STARTING ON 0.
+// (distances = [1,2,3,4], start = 0, destination 1) result = 1. (clockwise = 1, counterClockWise = 9)
+// (distances = [1,2,3,4], start = 0, destination 2) result = 3. (clockwise = 3, counterClockWise = 7)
+
+// k = distance records
+// x = start rest spot
+// y = finish rest spot
+
+// Dynamic programming - to make more efficient computation 0(1), using more Space O(n).
+// will build a matrix table
+export function distance(k, x, y) {
+  let restDataPoints = new Map();
+
+  // k = [1,2,3,4]
+  //  0 -(1)-> 1
+  //  |        |
+  // (4)      (2)
+  //  |        |
+  //  3 <-(3)-- 2
+
+  // build data object
+  for (let i = 0; i < k.length; i++) {
+    restDataPoints.set(i, { ...restDataPoints.get(i), clockWiseMove: k[i] });
+    const indexRestSpotLeft = i + 1 > k.length - 1 ? 0 : i + 1;
+    restDataPoints.set(indexRestSpotLeft, {
+      ...restDataPoints.get(indexRestSpotLeft),
+      counterClockWise: k[i],
+    });
+  }
+  // {
+  //   '0': { clockWiseMove: 1, counterClockWise: 4 },
+  //   '1': { counterClockWise: 1, clockWiseMove: 2 },
+  //   '2': { counterClockWise: 2, clockWiseMove: 3 },
+  //   '3': { counterClockWise: 3, clockWiseMove: 4 }
+  // }
+
+  // traversing data with reduce to get sums.
+  let start = x < y ? x : y;
+  let finish = y > x ? y : x;
+
+  let clockwise = 0;
+  for (let i = start; i < finish; i++) {
+    clockwise += restDataPoints.get(i).clockWiseMove;
+  }
+
+  let counterClockWise = 0;
+  // 3 < 3 dont enter
+  for (let i = finish; i < k.length - 1; i++) {
+    counterClockWise += restDataPoints.get(i).counterClockWise;
+  }
+  // 0 yes enter, 4
+  for (let i = 0; i <= start; i++) {
+    counterClockWise += restDataPoints.get(i).counterClockWise;
+  }
+
+  return Math.min(clockwise, counterClockWise);
+}
