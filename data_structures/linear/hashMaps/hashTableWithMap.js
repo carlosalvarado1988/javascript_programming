@@ -24,6 +24,9 @@ for this exercise i use a [
     [index]Map({key1}, {key2}), 
   ]
 
+another implementation online uses simple {} instead of Map()
+https://www.educative.io/blog/data-strucutres-hash-table-javascript
+
 */
 // https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 // equivalent to linkedList with document elements
