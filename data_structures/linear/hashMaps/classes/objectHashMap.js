@@ -1,4 +1,4 @@
-// IMPLEMENTING HASMAP WITH AN OBJECT
+// TODO: FIX THIS, IMPLEMENTING HASMAP WITH AN OBJECT
 
 /*
 to mimic a JAVA hash Map, 
@@ -16,7 +16,9 @@ LinkedList<Entry>[]
 // https://developer.mozilla.org/en-US/docs/Web/API/NodeList
 // equivalent to linkedList with document elements
 
-import { LinkedList } from "../LinkedList/linkedList.js";
+// import { LinkedList } from "../LinkedList/linkedList.js";
+import { LinkedList } from "../../LinkedList/linkedList.js";
+
 class Entry {
   constructor(key, value) {
     this.key = key;
@@ -29,7 +31,8 @@ export class HashMap {
   #entries;
   constructor(length) {
     this.#capacity = length;
-    this.#entries = new LinkedList();
+    // this.#entries = new LinkedList();
+    this.#entries = [];
   }
 
   // produces an index key within the boudaries of the hash map capacity
@@ -38,9 +41,12 @@ export class HashMap {
   }
   put(key, value) {
     const index = this.#getHash(key);
+    console.log("### index:", index);
+    console.log("### this.#entries:", this.#entries);
+    console.log("### this.#entries[index]:", this.#entries[index]);
 
     // if the spot is not used yet
-    if (this.#entries[index].length == 0) {
+    if (this.#entries[index]?.length == 0) {
       // add the linkedList container
       this.#entries[index] = new LinkedList();
     }

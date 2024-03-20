@@ -42,7 +42,7 @@ class Node {
   }
 }
 
-export class BinarySearchTree {
+export class BinaryTree {
   constructor() {
     this.root = null;
   }
@@ -264,7 +264,7 @@ export class BinarySearchTree {
   }
 }
 
-const tree = new BinarySearchTree();
+const tree = new BinaryTree();
 tree.insert(7);
 tree.insert(4);
 tree.insert(9);
@@ -283,7 +283,7 @@ tree.traversePreOrder();
 console.log("\ntree.height()", tree.height());
 console.log("\ntree.min()", tree.min());
 
-const tree2 = new BinarySearchTree();
+const tree2 = new BinaryTree();
 tree2.insert(7);
 tree2.insert(4);
 tree2.insert(9);

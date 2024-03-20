@@ -83,7 +83,8 @@ export class Search {
 
         Time complexity:
             BEST O(log3N) -> every iteration time is devided by 3. 
-            note: One can think log3 is faster than log2 of Binary search, but in fact, there are more if statements in ternary search that increases computation in large lists.
+            note: One can think log3 is faster than log2 of Binary search, but in fact, 
+            there are more if statements in ternary search that increases computation in large lists.
             for this reason, Binary search is more efficient that Ternary search
         Space complexity: 
             Recursive O(logN)  Iterative O(1) (note that the recursive space notation is so minimal - 1Million = 19 (1Mlog2 = 19), it does not matter)

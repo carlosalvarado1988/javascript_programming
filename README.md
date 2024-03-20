@@ -31,6 +31,16 @@ If you are using NodeJS v14.13.0 or newer (which does support ESM) - - you can e
 - Consider using TypeScript alongside ts-node or ts-node-dev npm packages (for instant transpilation at development time) and write TypeScript in .ts files
 - Transpile ESM to CommonJS using esbuild (esbuild package on npm) configured to transpile your ES6 javascript to a CommonJS target supported by your environment. (babel is no longer recommended)
 
+#### Typescript - ES6 and CommonJS
+
+- Use case: Basically I need to be able to write TypeScript code in my IDE (this introduces great ease to development), compile it to ES6 and then apply babel.js (as all browsers doesn't support most ES6) to get the resulting ES5 scripts.
+- i want to configure my tsconfig to transpile in ES6
+- Then apply a bable to compile in ES5 - CommonJS.
+
+- This project has a conflict with the ts portion of linear/array
+- the transpilation is throwing commonJS.
+- deprioritzed this config as in a real project you stick with one side.
+
 ### ES6
 
 ```

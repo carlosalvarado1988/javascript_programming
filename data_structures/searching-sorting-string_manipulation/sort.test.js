@@ -13,6 +13,11 @@ console.log(
   "sort.insertion([7, 3, 1, 5, 2]):",
   sort.insertion([7, 3, 1, 5, 2])
 );
+console.log(
+  "sort.insertion([1, 3, 8, 5, 2]):",
+  sort.insertion([1, 3, 8, 5, 2])
+);
+
 console.log("\n");
 console.log(
   "sort.mergeSort([7, 3, 1, 5, 2]):",

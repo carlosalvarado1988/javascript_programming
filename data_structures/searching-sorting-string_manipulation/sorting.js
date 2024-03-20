@@ -60,13 +60,28 @@ export class Sort {
   */
 
   selection(arr) {
+    // [1, (3), 8, 5, 2] (1)
+    // [1, 3, 8, 5, 2]
     for (let i = 0; i < arr.length; i++) {
-      let minIndex = i; // start with first element, we set it to i because in every new interation, i is the first element to find the new smaller.
+      // start with first element, we set it to i because in every new interation,
+      // i is the first element to find the new smaller.
+      let minIndex = i;
       for (let j = i; j < arr.length; j++) {
         if (arr[j] < arr[minIndex]) minIndex = j;
       }
       // note the array will be swap, altering the original array.
-      this.#swap(arr, minIndex, i);
+      // improv added
+      if (minIndex != i) {
+        this.#swap(arr, minIndex, i);
+      }
+      //swap min(1)3 -> (1)3
+      //swap min(1)3 -> (2)8
+      //swap min(1)3 -> (3)5
+      //swap min(4)2 -> (1)3 ---
+      // this.#swap(arr, minIndex(j or i), i =1);
+      // its taking minIndex to compare with all the above indexes.
+      // if does a swap, by updating minIndex and then it actually moves items.
+      // one improv can be compare if minIndex != i
     }
     // returning original arr to display in test
     return arr;
@@ -98,7 +113,7 @@ export class Sort {
       let current = arr[i]; // store temp the value to shift if needed
       // we loop thru all the items in the left so we compare and decide to shift if needed
       // we go from right to left (starting from the element next to the left of i), so that
-      // we capture the value and move it to the right (shift) without loosing any element.
+      // we capture the value and move it to the right (shift) without loosing any item value.
       //   let j = i - 1;
       //   while (j >= 0 && arr[j] > current) {
       //     arr[j + 1] = arr[j];
@@ -109,19 +124,24 @@ export class Sort {
       // we need a separate variable to track insertion index from index inspection
       // initially the for loop didnt work because we keep decrementing j (j--) even when not "arr[j] > current"
 
-      let insert_index = i - 1;
-      for (let el_check = insert_index; el_check >= 0; el_check--) {
-        // if we find an element greater than our current, we shift it to the right one position.
+      // [1, 3, 8, 5(3), 2]
+      let insert_index = i - 1; // i = 3, insert_index = 2
+      for (let idx_check = insert_index; idx_check >= 0; idx_check--) {
+        // if we find an item greater than our current,
+        // we shift it to the right one position.
         // we basically move the insertion space to the left one position.
         // our insertion space is J index.
-        if (arr[el_check] > current) {
-          arr[el_check + 1] = arr[el_check];
-          insert_index--;
+        if (arr[idx_check] > current) {
+          // 8 > 5 (item to insert is hold in current)
+          // [1, 3, 8, 5, 2] = [1, 3, 8, 8, 2]
+          arr[idx_check + 1] = arr[idx_check];
+          insert_index--; // 1
         }
       }
 
-      //  now we insert the current at J + 1
+      //  now we insert the current at J + 1 = 1+1 = 2
       arr[insert_index + 1] = current;
+      // [1, 3, 8, 8, 2] = [1, 3, 5, 8, 2]
     }
     return arr;
   }
@@ -215,7 +235,7 @@ export class Sort {
             - All items smaller than PIVOT are in the left.
                 - it doesn't matter if thay are sorted or not
             - All items greater than the PIVOT are in the right
-                - it doesn't matter if thay are sorted or not
+                - it doesn't matter if they are sorted or not
         - Typically you select the LAST ITEM as the PIVOT (there are other implementations for the pivot as well)
         - in every iteration, we select a new pivot as the last itme in each partition, and reorder items around the new pivot
         - the result of iterating to the left (lower items) is that the right side is resulting ordered (greater)
@@ -289,7 +309,7 @@ export class Sort {
     // for (var i = 0; i < array.length; i++) {   * modifying the partition to be reused in inner segments.
     for (var i = start; i <= end; i++) {
       if (array[i] <= pivot) {
-        //   boundary++;  -> a cleaner way is to increment first, then operate ++boundary
+        //   boundary++;  -> a cleaner way is to increment first, then operate boundary
         this.#swap(array, i, ++boundary);
       }
     }
