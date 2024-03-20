@@ -22,6 +22,23 @@ export class LinkedList {
     //   });
   }
 
+  findElement(index) {
+    let currentNode = this.first;
+    let count = 0;
+
+    while (currentNode) {
+      if (count === index) {
+        // found the element
+        return currentNode;
+      }
+
+      count++; // increment counter
+      currentNode = currentNode.next; // move to next node
+    }
+
+    return -1;
+  }
+
   printAll() {
     let current = this.first;
     while (current) {
