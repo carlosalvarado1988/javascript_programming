@@ -264,44 +264,44 @@ export class BinaryTree {
   }
 }
 
-const tree = new BinaryTree();
-tree.insert(7);
-tree.insert(4);
-tree.insert(9);
-tree.insert(1);
-tree.insert(6);
-tree.insert(8);
-tree.insert(10);
+// const tree = new BinaryTree();
+// tree.insert(7);
+// tree.insert(4);
+// tree.insert(9);
+// tree.insert(1);
+// tree.insert(6);
+// tree.insert(8);
+// tree.insert(10);
 
-console.log("\ntree.find()");
-console.log("tree.find(19):", tree.find(19));
-console.log("tree.find(10):", tree.find(10));
+// console.log("\ntree.find()");
+// console.log("tree.find(19):", tree.find(19));
+// console.log("tree.find(10):", tree.find(10));
 
-console.log("\ntree.traversePreOrder()");
-tree.traversePreOrder();
+// console.log("\ntree.traversePreOrder()");
+// tree.traversePreOrder();
 
-console.log("\ntree.height()", tree.height());
-console.log("\ntree.min()", tree.min());
+// console.log("\ntree.height()", tree.height());
+// console.log("\ntree.min()", tree.min());
 
-const tree2 = new BinaryTree();
-tree2.insert(7);
-tree2.insert(4);
-tree2.insert(9);
-tree2.insert(1);
-tree2.insert(6);
-tree2.insert(8);
-// tree2.insert(10);
+// const tree2 = new BinaryTree();
+// tree2.insert(7);
+// tree2.insert(4);
+// tree2.insert(9);
+// tree2.insert(1);
+// tree2.insert(6);
+// tree2.insert(8);
+// // tree2.insert(10);
 
-console.log("\ntree.equal(tree2)", tree.equal(tree2));
-console.log("\ntree.isThisValidBST()", tree.isThisValidBST());
-console.log("\ntree.isValidBST(tree3)", tree.isValidBST(tree2.root));
-tree2.swapRootLevel();
+// console.log("\ntree.equal(tree2)", tree.equal(tree2));
+// console.log("\ntree.isThisValidBST()", tree.isThisValidBST());
+// console.log("\ntree.isValidBST(tree3)", tree.isValidBST(tree2.root));
+// tree2.swapRootLevel();
 
-console.log(
-  "\ntree.isValidBST(tree3) after swapRootLevel()",
-  tree.isValidBST(tree2.root)
-);
+// console.log(
+//   "\ntree.isValidBST(tree3) after swapRootLevel()",
+//   tree.isValidBST(tree2.root)
+// );
 
-console.log("\ntree.getNodesAtDistance(2)", tree.getNodesAtDistance(2));
-console.log("\ntree.levelOrderTraversal()");
-tree.levelOrderTraversal();
+// console.log("\ntree.getNodesAtDistance(2)", tree.getNodesAtDistance(2));
+// console.log("\ntree.levelOrderTraversal()");
+// tree.levelOrderTraversal();

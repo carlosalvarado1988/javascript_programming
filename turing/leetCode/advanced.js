@@ -120,44 +120,47 @@ The number of nodes in the tree is in the range [1, 105].
 function buildTree(arr) {
   const tree = new BinaryTree();
   for (let item of arr) {
-    console.log("🚀 ~ buildTree ~ item:", item);
     tree.insert(item);
   }
   return tree;
 }
 
-export function isEvenOddTree(array) {
-  if (!array) return false;
-  const root = buildTree(array);
-  if (!root) return true;
+// export function isEvenOddTree(array) {
+//   if (!array) return false;
+//   const root = buildTree(array);
+//   if (!root) return true;
 
-  let queue = [root];
-  let level = 0;
+//   let queue = [root];
+//   let level = 0;
 
-  while (queue.length > 0) {
-    const size = queue.length;
-    let prev = level % 2 === 0 ? -1 : Infinity;
+//   while (queue.length > 0) {
+//     const size = queue.length;
+//     let prev = level % 2 === 0 ? -1 : Infinity;
 
-    for (let i = 0; i < size; i++) {
-      const node = queue.shift();
+//     for (let i = 0; i < size; i++) {
+//       const node = queue.shift();
 
-      // check if the node fulfills the conditions
-      if (
-        (level % 2 === 0 && (node.val % 2 !== 1 || node.val <= prev)) ||
-        (level % 2 === 1 && (node.val % 2 !== 0 || node.val >= prev))
-      ) {
-        return false;
-      }
+//       // check if the node fulfills the conditions
+//       if (
+//         (level % 2 === 0 && (node.val % 2 !== 1 || node.val <= prev)) ||
+//         (level % 2 === 1 && (node.val % 2 !== 0 || node.val >= prev))
+//       ) {
+//         return false;
+//       }
 
-      // update previous value for the next iteration
-      prev = node.val;
+//       // update previous value for the next iteration
+//       prev = node.val;
 
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
+//       if (node.left) queue.push(node.left);
+//       if (node.right) queue.push(node.right);
+//     }
 
-    level++;
-  }
+//     level++;
+//   }
 
-  return true;
+//   return true;
+// }
+
+export function turingTest2(a, b) {
+  return 1;
 }
