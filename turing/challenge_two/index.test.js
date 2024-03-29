@@ -1,7 +1,7 @@
 import { numberGenerator, rearrangeString3 } from "./index";
 
 describe("Challenge two", () => {
-  it.skip("numberGenerator", () => {
+  it("numberGenerator", () => {
     expect(numberGenerator("0123456789", "210")).toBe(4);
     expect(numberGenerator("8459761203", "5439")).toBe(17);
   });
